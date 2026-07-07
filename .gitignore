@@ -1,0 +1,13 @@
+node_modules/
+.venv/
+mongodb_data/
+mongodb_log.txt
+*.log
+.DS_Store
+screenshots/
+*.docx
+*.pyc
+__pycache__/
+dist/
+.env
+*.pdf

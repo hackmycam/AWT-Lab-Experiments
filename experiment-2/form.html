@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+<script>
+function validate()
+{
+var fname=document.f1.fname.value;
+var lname=document.f1.lname.value;
+var pass=document.f1.pass.value;
+var email=document.f1.email.value;
+var phone=document.f1.phone.value;
+var addr=document.f1.addr.value;
+
+var alphabets = /^[A-Za-z]+$/;
+
+if(fname.length<6 || !fname.match(alphabets))
+{
+alert("First name must be at least 6 characters and contain only alphabets");
+return false;
+}
+if(lname=="")
+{
+alert("Last name cannot be empty");
+return false;
+}
+if(pass.length<6)
+{
+alert("Password must be at least 6 characters");
+return false;
+}
+if(email.indexOf("@")==-1 || email.indexOf(".")==-1)
+{
+alert("Enter valid email");
+return false;
+}
+if(phone.length!=10 || isNaN(phone))
+{
+alert("Mobile number must be 10 digits");
+return false;
+}
+if(addr=="")
+{
+alert("Address cannot be empty");
+return false;
+}
+alert("Validation Success");
+return true;
+}
+</script> </head>
+<body>
+<h2>Registration Form</h2>
+<form name="f1" onsubmit="return validate()">
+First Name: <input type="text" name="fname"><br><br>
+Last Name: <input type="text" name="lname"><br><br>
+Password: <input type="password" name="pass"><br><br>
+Email: <input type="text" name="email"><br><br>
+Mobile Number: <input type="text" name="phone"><br><br>
+Address: <textarea name="addr"></textarea><br><br>
+<input type="submit" value="Register">
+</form>
+</body>
+</html>
