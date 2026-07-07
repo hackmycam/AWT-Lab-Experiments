@@ -1,0 +1,3 @@
+@echo off
+echo Opening Form Validation...
+start form.html

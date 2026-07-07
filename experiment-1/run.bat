@@ -1,0 +1,3 @@
+@echo off
+echo Opening University Website...
+start index.html
