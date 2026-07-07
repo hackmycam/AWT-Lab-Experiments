@@ -14,13 +14,11 @@ Advanced Web Technology Lab Programs (Experiments 1-10).
 | 6 | React Router Navigation | React (Vite), React Router |
 | 7 | RESTful API with Express.js | Node.js, Express |
 | 8 | MongoDB CRUD Operations | Node.js, Mongoose, MongoDB |
-| 9 | Login System | React (Vite), Node.js, Express, MongoDB |
-| 10 | Person Details App | Node.js, Express, MongoDB |
 
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18+)
-- [MongoDB](https://www.mongodb.com/try/download/community) (for experiments 8-10)
+- [MongoDB](https://www.mongodb.com/try/download/community) (for experiment 8)
 - A modern web browser
 
 ## How to Run
@@ -32,5 +30,5 @@ Each experiment folder has its own `README.md` with specific setup instructions.
 2. Navigate to the experiment folder
 3. Follow the README inside that folder
 
-### For MongoDB experiments (8, 9, 10):
+### For MongoDB experiment (8):
 Make sure MongoDB is running on `mongodb://127.0.0.1:27017` before starting.
