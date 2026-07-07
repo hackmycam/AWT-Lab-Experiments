@@ -1,34 +1,56 @@
-# AWT Lab Experiments
+# Advanced Web Technology Lab (MCAP235)
 
-Advanced Web Technology Lab Programs (Experiments 1-10).
+## Lab Programs
 
-## Experiments
+### Program 1
+Create a department page using the following HTML tags:
+a) Text Formatting tags 
+b) Links 
+c) Images 
+d) Tables 
+e) Lists 
+f) Frames
+*(Located in: `Program-1-Department-Page`)*
 
-| # | Title | Tech Stack |
-|---|-------|------------|
-| 1 | University Website with Frames | HTML |
-| 2 | Form Validation | HTML, JavaScript |
-| 3 | React Components - Employee & Events | React (Vite) |
-| 4 | React Component Lifecycle | React (Vite) |
-| 5 | React State Management | React (Vite) |
-| 6 | React Router Navigation | React (Vite), React Router |
-| 7 | RESTful API with Express.js | Node.js, Express |
-| 8 | MongoDB CRUD Operations | Node.js, Mongoose, MongoDB |
+### Program 2
+Write JavaScript to validate the following fields of the Registration page:
+- First Name (Name should contains alphabets and the length should not be less than 6 characters).
+- Password (Password should not be less than 6 characters length).
+- E-mail id (should not contain any invalid and must follow the standard pattern name@domain.com).
+- Mobile Number (Phone number should contain 10 digits only).
+- Last Name and Address (should not be Empty).
+*(Located in: `Program-2-Form-Validation`)*
+
+### Program 3
+- Develop a reactJs Application which demonstrate the working of Class component to display Employee details like Sname , Sid, Dept, Age, Apply inline CSS styling for the same.
+- Develop a program to handle user events.
+- Develop a React application that includes multiple components. Understand and implement the React component lifecycle methods.
+*(Located in: `Program-3-React-Employee-Events-Lifecycle`)*
+
+### Program 4
+Create and display an order detail list for any 3 items which will include the product name, product description, price and quantity. When an onClick event is triggered on a button the quantity has to increase and the total cost along with Order date and Expected delivery Date, has to be calculated and displayed with the update of items quantity.
+Order Date: 05/10/2022 (Note - Current date in dd/mm/yyyy)
+Expected Delivery Date: 08/10/2022 (Note - Current Date + 3 days)
+*(Located in: `Program-4-React-Order-Details`)*
+
+### Program 5
+Build a basic registration form in React where users can enter first name, last name, and email. Post-registration, an error message is displayed for each field if validation fails else a success message is shown.
+*(Located in: `Program-5-React-Registration-Form`)*
+
+### Program 6
+Build a REST application for Library Management using NodeJS & Express JS.
+*(Located in: `Program-6-Library-REST-API`)*
+
+### Program 7
+Perform CRUD operations with NodeJS with MongoDB.
+*(Located in: `Program-7-MongoDB-CRUD`)*
+
+---
 
 ## Prerequisites
-
 - [Node.js](https://nodejs.org/) (v18+)
-- [MongoDB](https://www.mongodb.com/try/download/community) (for experiment 8)
+- [MongoDB](https://www.mongodb.com/try/download/community) (for Program 7)
 - A modern web browser
 
 ## How to Run
-
-Each experiment folder has its own `README.md` with specific setup instructions.
-
-### General Steps:
-1. Clone the repo
-2. Navigate to the experiment folder
-3. Follow the README inside that folder
-
-### For MongoDB experiment (8):
-Make sure MongoDB is running on `mongodb://127.0.0.1:27017` before starting.
+Each program folder has its own `run.bat` script. Simply double click `run.bat` inside any folder to automatically install dependencies, start the servers, and open the application in your browser!
