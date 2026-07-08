@@ -40,10 +40,11 @@ app.get('/books/:id', (req, res) => {
 // POST New Book
 app.post('/books', (req, res) => {
 
+    const body = req.body || {};
     const newBook = {
         id: books.length + 1,
-        title: req.body.title,
-        author: req.body.author
+        title: body.title || "Untitled",
+        author: body.author || "Unknown"
     };
 
     books.push(newBook);
@@ -65,8 +66,9 @@ app.put('/books/:id', (req, res) => {
             message: "Book not found"
         });
 
-    book.title = req.body.title;
-    book.author = req.body.author;
+    const body = req.body || {};
+    if (body.title) book.title = body.title;
+    if (body.author) book.author = body.author;
 
     res.json({
         message: "Book Updated",
