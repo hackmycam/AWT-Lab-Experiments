@@ -1,0 +1,1293 @@
+==================================================
+AWT LAB PROGRAMS - COMPLETE SOURCE CODE
+==================================================
+
+
+##################################################
+PROJECT: Program-1-Department-Page
+##################################################
+
+--- FILE: Program-1-Department-Page\courses.html ---
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Courses Offered</h2>
+<ol>
+<li>Programming in C</li>
+<li>Data Structures</li>
+<li>Database Management System</li>
+<li>Operating Systems</li>
+<li>Artificial Intelligence</li>
+</ol>
+</body>
+</html>
+
+
+--- FILE: Program-1-Department-Page\faculty.html ---
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Faculty Details</h2>
+ <table border="1">
+<tr>
+<th>Name</th>
+<th>Designation</th>
+<th>Qualification</th>
+</tr>
+<tr>
+<td>Dr. Anil</td>
+<td>Professor</td>
+<td>PhD</td>
+</tr>
+<tr>
+<td>Reeshma</td>
+<td>Assistant Professor</td>
+<td>MCA</td>
+</tr>
+<tr>
+<td>Ravi</td>
+<td>Lecturer</td>
+<td>M.Tech</td>
+</tr>
+</table> 
+</body>
+</html>
+
+
+--- FILE: Program-1-Department-Page\home.html ---
+<!DOCTYPE html>
+<html>
+ <body>
+<h1>MCA Department</h1>
+<p>
+<b>MCA Department</b> provides <i>advanced knowledge</i> in
+<u>computer applications</u>. Students learn
+<strong>Artificial Intelligence</strong> and
+<em>Machine Learning</em>.
+</p>
+<h2>Department Image</h2>
+<img src="img1.png" width="400" height="250">
+ </body>
+</html>
+
+
+--- FILE: Program-1-Department-Page\index.html ---
+<!DOCTYPE html>
+<html>
+<head>
+<title>Department Page</title>
+</head>
+<frameset cols="25%,75%">
+ <frame src="menu.html">
+ <frame src="home.html" name="content"></frame>
+</frameset>
+</html>
+
+
+--- FILE: Program-1-Department-Page\menu.html ---
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Department Menu</h3>
+<ul>
+<li><a href="home.html" target="content">Home</a></li>
+<li><a href="faculty.html" target="content">Faculty</a></li>
+<li><a href="courses.html" target="content">Courses</a></li>
+</ul>
+</body>
+</html>
+
+
+
+##################################################
+PROJECT: Program-2-Form-Validation
+##################################################
+
+--- FILE: Program-2-Form-Validation\form.html ---
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+<script>
+function validate()
+{
+var fname=document.f1.fname.value;
+var lname=document.f1.lname.value;
+var pass=document.f1.pass.value;
+var email=document.f1.email.value;
+var phone=document.f1.phone.value;
+var addr=document.f1.addr.value;
+
+var alphabets = /^[A-Za-z]+$/;
+
+if(fname.length<6 || !fname.match(alphabets))
+{
+alert("First name must be at least 6 characters and contain only alphabets");
+return false;
+}
+if(lname=="")
+{
+alert("Last name cannot be empty");
+return false;
+}
+if(pass.length<6)
+{
+alert("Password must be at least 6 characters");
+return false;
+}
+if(email.indexOf("@")==-1 || email.indexOf(".")==-1)
+{
+alert("Enter valid email");
+return false;
+}
+if(phone.length!=10 || isNaN(phone))
+{
+alert("Mobile number must be 10 digits");
+return false;
+}
+if(addr=="")
+{
+alert("Address cannot be empty");
+return false;
+}
+alert("Validation Success");
+return true;
+}
+</script> </head>
+<body>
+<h2>Registration Form</h2>
+<form name="f1" onsubmit="return validate()">
+First Name: <input type="text" name="fname"><br><br>
+Last Name: <input type="text" name="lname"><br><br>
+Password: <input type="password" name="pass"><br><br>
+Email: <input type="text" name="email"><br><br>
+Mobile Number: <input type="text" name="phone"><br><br>
+Address: <textarea name="addr"></textarea><br><br>
+<input type="submit" value="Register">
+</form>
+</body>
+</html>
+
+
+
+##################################################
+PROJECT: Program-3-React-Employee-Events-Lifecycle
+##################################################
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartA-Employee-Details\index.html ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react-experiments</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartA-Employee-Details\vite.config.js ---
+import { defineConfig, transformWithOxc } from 'vite'
+import react from '@vitejs/plugin-react'
+
+const transformJsxInJs = () => ({
+  name: "transform-jsx-in-js",
+  enforce: "pre",
+  async transform(code, id) {
+    if (!id.match(/.*\.js$/)) {
+      return null;
+    }
+    return await transformWithOxc(code, id, {
+      lang: "jsx",
+    });
+  },
+});
+
+export default defineConfig({
+  plugins: [
+    react(),
+    transformJsxInJs()
+  ],
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
+})
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartA-Employee-Details\src\App.css ---
+/* Custom styles can go here */
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartA-Employee-Details\src\App.js ---
+import React from "react";
+import Employee from "./components/Employee";
+import "./App.css";
+
+function App() {
+  const headerStyle = {
+    background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
+    color: "white",
+    padding: "20px",
+    textAlign: "center",
+    marginBottom: "20px",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+  };
+
+  return (
+    <div>
+      <header style={headerStyle}>
+        <h1 style={{ margin: 0, fontSize: "24px" }}>AWT Experiment 3: Employee & Events Demo</h1>
+      </header>
+      <main style={{ padding: "20px" }}>
+        <Employee />
+      </main>
+    </div>
+  );
+}
+
+export default App;
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartA-Employee-Details\src\index.css ---
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f9;
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartA-Employee-Details\src\main.js ---
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartA-Employee-Details\src\components\Employee.js ---
+import React from "react";
+
+class EmployeeForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      Sname: "",
+      Sid: "",
+      Dept: "",
+      Age: ""
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.clearData = this.clearData.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  clearData() {
+    this.setState({
+      Sname: "",
+      Sid: "",
+      Dept: "",
+      Age: ""
+    });
+  }
+
+  render() {
+    const boxStyle = {
+      width: "350px",
+      margin: "50px auto",
+      padding: "20px",
+      border: "2px solid black",
+      borderRadius: "10px",
+      backgroundColor: "#f2f2f2"
+    };
+
+    const headingStyle = {
+      textAlign: "center",
+      color: "blue"
+    };
+
+    return (
+      <div style={boxStyle}>
+        <h2 style={headingStyle}>Employee Form</h2>
+        <label>Student Name:</label><br />
+        <input
+          type="text"
+          name="Sname"
+          value={this.state.Sname}
+          onChange={this.handleChange}
+        /><br /><br />
+
+        <label>Student ID:</label><br />
+        <input
+          type="text"
+          name="Sid"
+          value={this.state.Sid}
+          onChange={this.handleChange}
+        /><br /><br />
+
+        <label>Department:</label><br />
+        <input
+          type="text"
+          name="Dept"
+          value={this.state.Dept}
+          onChange={this.handleChange}
+        /><br /><br />
+
+        <label>Age:</label><br />
+        <input
+          type="text"
+          name="Age"
+          value={this.state.Age}
+          onChange={this.handleChange}
+        /><br /><br />
+
+        <h3>Employee Details</h3>
+        <p><b>Name :</b> {this.state.Sname}</p>
+        <p><b>ID :</b> {this.state.Sid}</p>
+        <p><b>Department :</b> {this.state.Dept}</p>
+        <p><b>Age :</b> {this.state.Age}</p>
+        <button onClick={this.clearData}>Clear</button>
+      </div>
+    );
+  }
+}
+
+class UserEvents extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      message: ""
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      name: event.target.value,
+      message: "onChange Event Triggered"
+    });
+  }
+
+  handleClick() {
+    this.setState({
+      name: "",
+      message: "onClick Event Triggered (Textbox Cleared)"
+    });
+  }
+
+  handleFocus() {
+    this.setState({
+      message: "onFocus Event Triggered"
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({
+      message: "onSubmit Event Triggered"
+    });
+  }
+
+  render() {
+    const boxStyle = {
+      backgroundColor: "lightblue",
+      border: "2px solid black",
+      width: "300px",
+      margin: "50px auto",
+      padding: "20px",
+      textAlign: "center"
+    };
+
+    return (
+      <div style={boxStyle}>
+        <h2>User Event Handling</h2>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="Enter Name"
+            value={this.state.name}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+          /><br /><br />
+          <button type="button" onClick={this.handleClick}>Clear</button><br /><br />
+          <input type="submit" value="Submit" />
+        </form>
+        <h3>{this.state.message}</h3>
+        <p>Name: {this.state.name}</p>
+      </div>
+    );
+  }
+}
+
+export default function Employee() {
+  return (
+    <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+      <EmployeeForm />
+      <UserEvents />
+    </div>
+  );
+}
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartB-Component-Lifecycle\index.html ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react-experiments</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartB-Component-Lifecycle\vite.config.js ---
+import { defineConfig, transformWithOxc } from 'vite'
+import react from '@vitejs/plugin-react'
+
+const transformJsxInJs = () => ({
+  name: "transform-jsx-in-js",
+  enforce: "pre",
+  async transform(code, id) {
+    if (!id.match(/.*\.js$/)) {
+      return null;
+    }
+    return await transformWithOxc(code, id, {
+      lang: "jsx",
+    });
+  },
+});
+
+export default defineConfig({
+  plugins: [
+    react(),
+    transformJsxInJs()
+  ],
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
+})
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartB-Component-Lifecycle\src\App.css ---
+/* Custom styles can go here */
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartB-Component-Lifecycle\src\App.js ---
+import React from "react";
+import LifecycleDemo from "./components/LifecycleDemo";
+import "./App.css";
+
+function App() {
+  const headerStyle = {
+    background: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
+    color: "white",
+    padding: "20px",
+    textAlign: "center",
+    marginBottom: "20px",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+  };
+
+  return (
+    <div>
+      <header style={headerStyle}>
+        <h1 style={{ margin: 0, fontSize: "24px" }}>AWT Experiment 4: Lifecycle Methods Demo</h1>
+      </header>
+      <main style={{ padding: "20px" }}>
+        <LifecycleDemo />
+      </main>
+    </div>
+  );
+}
+
+export default App;
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartB-Component-Lifecycle\src\index.css ---
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f9;
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartB-Component-Lifecycle\src\main.js ---
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+
+--- FILE: Program-3-React-Employee-Events-Lifecycle\PartB-Component-Lifecycle\src\components\LifecycleDemo.js ---
+import React from "react";
+
+class ChildComponent extends React.Component {
+  componentWillUnmount() {
+    alert("Child Component Removed");
+  }
+  render() {
+    return (
+      <div style={{ padding: "10px", border: "1px dashed red", marginTop: "10px" }}>
+        <h4>Child Component</h4>
+      </div>
+    );
+  }
+}
+
+class Main extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 1,
+      showChild: true
+    };
+    this.changeCount = this.changeCount.bind(this);
+    this.toggleChild = this.toggleChild.bind(this);
+  }
+
+  componentDidMount() {
+    document.title = "React life Cycle Demo";
+    console.log("Parent Mounted");
+  }
+
+  componentDidUpdate() {
+    console.log("Parent Updated");
+  }
+
+  changeCount() {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+
+  toggleChild() {
+    this.setState({
+      showChild: !this.state.showChild
+    });
+  }
+
+  render() {
+    return (
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <h2>Parent Component</h2>
+        <h3>Count: {this.state.count}</h3>
+        <button onClick={this.changeCount}>Increase Count</button><br/><br/>
+        <button onClick={this.toggleChild}>
+          {this.state.showChild ? "Remove Child Component" : "Add Child Component"}
+        </button>
+        {this.state.showChild && <ChildComponent />}
+      </div>
+    );
+  }
+}
+
+export default Main;
+
+
+
+##################################################
+PROJECT: Program-4-React-Order-Details
+##################################################
+
+--- FILE: Program-4-React-Order-Details\index.html ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react-experiments</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
+
+--- FILE: Program-4-React-Order-Details\vite.config.js ---
+import { defineConfig, transformWithOxc } from 'vite'
+import react from '@vitejs/plugin-react'
+
+const transformJsxInJs = () => ({
+  name: "transform-jsx-in-js",
+  enforce: "pre",
+  async transform(code, id) {
+    if (!id.match(/.*\.js$/)) {
+      return null;
+    }
+    return await transformWithOxc(code, id, {
+      lang: "jsx",
+    });
+  },
+});
+
+export default defineConfig({
+  plugins: [
+    react(),
+    transformJsxInJs()
+  ],
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
+})
+
+
+--- FILE: Program-4-React-Order-Details\src\App.css ---
+/* Custom styles can go here */
+
+
+--- FILE: Program-4-React-Order-Details\src\App.js ---
+import React from "react";
+import Orders from "./components/Orders";
+import "./App.css";
+
+function App() {
+  const headerStyle = {
+    background: "linear-gradient(135deg, #1f4068 0%, #162447 100%)",
+    color: "white",
+    padding: "20px",
+    textAlign: "center",
+    marginBottom: "20px",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+  };
+
+  return (
+    <div>
+      <header style={headerStyle}>
+        <h1 style={{ margin: 0, fontSize: "24px" }}>AWT Experiment 5: Orders Detail & Delivery</h1>
+      </header>
+      <main style={{ padding: "20px" }}>
+        <Orders />
+      </main>
+    </div>
+  );
+}
+
+export default App;
+
+
+--- FILE: Program-4-React-Order-Details\src\index.css ---
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f9;
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+--- FILE: Program-4-React-Order-Details\src\main.js ---
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+
+--- FILE: Program-4-React-Order-Details\src\components\Orders.js ---
+import React, { useState } from "react";
+
+function Orders() {
+  const [count, setCount] = useState(1);
+  const [count1, setCount1] = useState(1);
+  const [count2, setCount2] = useState(1);
+
+  const price1 = count * 90000;
+  const price2 = count1 * 80000;
+  const price3 = count2 * 65000;
+
+  const orderDate = new Date();
+  const deliveryDate = new Date();
+  deliveryDate.setDate(orderDate.getDate() + 3);
+
+  return (
+    <div style={{
+      backgroundColor: "skyblue",
+      minHeight: "50vh",
+      width: "90%",
+      padding: "20px"
+    }}>
+      <h2>Order Details</h2>
+      <div style={{ display: "flex", gap: "100px" }}>
+        <fieldset>
+          <h4><b>MAC Book</b></h4>
+          <p>
+            Apple MGN63HNA MAB BOOK AIR<br />
+            Price: INR Rs.90000<br />
+            <label>Quantity: {count}</label><br />
+            <button onClick={() => setCount(count + 1)}>+</button><br />
+            price1 = {price1}
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <h3>Dell core i7</h3>
+          <p>
+            Description:<br />
+            11th Generation Intel® Core™ i7-11390H Processor<br />
+            Windows 11 Home<br />
+            Price: 80000 INR<br />
+            <label>Quantity: {count1}</label><br />
+            <button onClick={() => setCount1(count1 + 1)}>+</button><br />
+            price2 = {price2}
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <h3>HP</h3>
+          <p>
+            Description:<br />
+            11th Generation Intel® Core™ i7<br />
+            Price: NR Rs.65000<br />
+            <label>Quantity: {count2}</label><br />
+            <button onClick={() => setCount2(count2 + 1)}>+</button><br />
+            price3 = {price3}
+          </p>
+        </fieldset>
+      </div>
+      <p>Total: {price1 + price2 + price3}</p>
+      <p>Order Date: {orderDate.toDateString()}</p>
+      <p>Expected Delivery Date: {deliveryDate.toDateString()}</p>
+    </div>
+  );
+}
+
+export default Orders;
+
+
+
+##################################################
+PROJECT: Program-5-React-Registration-Form
+##################################################
+
+--- FILE: Program-5-React-Registration-Form\index.html ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react-experiments</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
+
+--- FILE: Program-5-React-Registration-Form\vite.config.js ---
+import { defineConfig, transformWithOxc } from 'vite'
+import react from '@vitejs/plugin-react'
+
+const transformJsxInJs = () => ({
+  name: "transform-jsx-in-js",
+  enforce: "pre",
+  async transform(code, id) {
+    if (!id.match(/.*\.js$/)) {
+      return null;
+    }
+    return await transformWithOxc(code, id, {
+      lang: "jsx",
+    });
+  },
+});
+
+export default defineConfig({
+  plugins: [
+    react(),
+    transformJsxInJs()
+  ],
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
+})
+
+
+--- FILE: Program-5-React-Registration-Form\src\App.css ---
+/* Custom styles can go here */
+
+
+--- FILE: Program-5-React-Registration-Form\src\App.js ---
+import React from "react";
+import ValidateForm from "./components/ValidateForm";
+import "./App.css";
+
+function App() {
+  const headerStyle = {
+    background: "linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%)",
+    color: "white",
+    padding: "20px",
+    textAlign: "center",
+    marginBottom: "20px",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+  };
+
+  return (
+    <div>
+      <header style={headerStyle}>
+        <h1 style={{ margin: 0, fontSize: "24px" }}>AWT Experiment 6: React Form Validation</h1>
+      </header>
+      <main style={{ padding: "20px" }}>
+        <ValidateForm />
+      </main>
+    </div>
+  );
+}
+
+export default App;
+
+
+--- FILE: Program-5-React-Registration-Form\src\index.css ---
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f9;
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+--- FILE: Program-5-React-Registration-Form\src\main.js ---
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+
+--- FILE: Program-5-React-Registration-Form\src\components\ValidateForm.js ---
+import React, { useState } from "react";
+
+function Validate() {
+  const [formData, setFormData] = useState({
+    fname: "",
+    lname: "",
+    password: "",
+    email: "",
+    mobile: "",
+    address: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const validateForm = () => {
+    let newErrors = {};
+
+    const namePattern = /^[A-Za-z]+$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-z]+\.[a-z]{2,}$/;
+    const mobilePattern = /^[0-9]{10}$/;
+
+    if (!namePattern.test(formData.fname) || formData.fname.length < 6) {
+      newErrors.fname = "First Name must contain only alphabets and minimum 6 characters";
+    }
+    if (formData.lname.trim() === "") {
+      newErrors.lname = "Last Name cannot be empty";
+    }
+    if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters long";
+    }
+    if (!emailPattern.test(formData.email)) {
+      newErrors.email = "Enter a valid Email ID";
+    }
+    if (!mobilePattern.test(formData.mobile)) {
+      newErrors.mobile = "Mobile number must contain exactly 10 digits";
+    }
+    if (formData.address.trim() === "") {
+      newErrors.address = "Address cannot be empty";
+    }
+
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validateForm();
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setSuccessMessage("");
+    } else {
+      setErrors({});
+      setSuccessMessage("Registration Successful");
+    }
+  };
+
+  return (
+    <div style={styles.container}>
+      <h2>Registration Form</h2>
+      <form onSubmit={handleSubmit}>
+        <div style={styles.field}>
+          <label>First Name:</label>
+          <input
+            type="text"
+            name="fname"
+            value={formData.fname}
+            onChange={handleChange}
+          />
+          {errors.fname && <p style={styles.error}>{errors.fname}</p>}
+        </div>
+
+        <div style={styles.field}>
+          <label>Last Name:</label>
+          <input
+            type="text"
+            name="lname"
+            value={formData.lname}
+            onChange={handleChange}
+          />
+          {errors.lname && <p style={styles.error}>{errors.lname}</p>}
+        </div>
+
+        <div style={styles.field}>
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          {errors.password && <p style={styles.error}>{errors.password}</p>}
+        </div>
+
+        <div style={styles.field}>
+          <label>Email:</label>
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <p style={styles.error}>{errors.email}</p>}
+        </div>
+
+        <div style={styles.field}>
+          <label>Mobile Number:</label>
+          <input
+            type="text"
+            name="mobile"
+            value={formData.mobile}
+            onChange={handleChange}
+          />
+          {errors.mobile && <p style={styles.error}>{errors.mobile}</p>}
+        </div>
+
+        <div style={styles.field}>
+          <label>Address:</label>
+          <textarea
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+          />
+          {errors.address && <p style={styles.error}>{errors.address}</p>}
+        </div>
+
+        <button type="submit">Register</button>
+      </form>
+
+      {successMessage && <p style={styles.success}>{successMessage}</p>}
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    width: "400px",
+    margin: "30px auto",
+    padding: "20px",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    fontFamily: "Arial",
+  },
+  field: {
+    marginBottom: "15px",
+    display: "flex",
+    flexDirection: "column",
+  },
+  error: {
+    color: "red",
+    fontSize: "14px",
+  },
+  success: {
+    color: "green",
+    marginTop: "15px",
+    fontWeight: "bold",
+  },
+};
+
+export default Validate;
+
+
+
+##################################################
+PROJECT: Program-6-Library-REST-API
+##################################################
+
+--- FILE: Program-6-Library-REST-API\server.js ---
+const express = require('express');
+const app = express();
+
+
+app.use(express.json());
+
+// Sample Book Data
+let books = [
+    {
+        id: 1,
+        title: "Java Programming",
+        author: "James Gosling"
+    },
+    {
+        id: 2,
+        title: "Python Basics",
+        author: "Guido van Rossum"
+    }
+];
+
+// GET All Books (read all books)
+app.get('/books', (req, res) => {
+    res.json(books);
+});
+
+// GET Single Book
+app.get('/books/:id', (req, res) => {
+    const book = books.find(
+        b => b.id == parseInt(req.params.id)
+    );
+
+    if (!book)
+        return res.status(404).json({
+            message: "Book not found"
+        });
+
+    res.json(book);
+});
+
+// POST New Book
+app.post('/books', (req, res) => {
+
+    const newBook = {
+        id: books.length + 1,
+        title: req.body.title,
+        author: req.body.author
+    };
+
+    books.push(newBook);
+
+    res.status(201).json({
+        message: "Book Added",
+        book: newBook
+    });
+});
+
+// PUT Update Book
+app.put('/books/:id', (req, res) => {
+
+    const book = books.find(
+        b => b.id == parseInt(req.params.id));
+
+    if (!book)
+        return res.status(404).json({
+            message: "Book not found"
+        });
+
+    book.title = req.body.title;
+    book.author = req.body.author;
+
+    res.json({
+        message: "Book Updated",
+        book
+    });
+});
+
+// DELETE Book
+app.delete('/books/:id', (req, res) => {
+
+    books = books.filter(
+        b => b.id != parseInt(req.params.id)
+    );
+
+    res.json({
+        message: "Book Deleted"
+    });
+});
+
+// Start Server
+app.listen(3000, () => {
+    console.log("Server running on port 3000");
+});
+
+
+--- FILE: Program-6-Library-REST-API\test\server.test.js ---
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const app = require('../server');
+
+test('PUT /books/:id works without a body', async () => {
+  const server = app.listen(0);
+  const address = await new Promise((resolve) => {
+    server.once('listening', () => resolve(server.address()));
+  });
+
+  const response = await fetch(`http://127.0.0.1:${address.port}/books/1`, {
+    method: 'PUT'
+  });
+
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  assert.equal(data.book.title, 'Java Programming');
+
+  await new Promise((resolve) => server.close(resolve));
+});
+
+
+
+##################################################
+PROJECT: Program-7-MongoDB-CRUD
+##################################################
+
+--- FILE: Program-7-MongoDB-CRUD\app.js ---
+const mongoose = require('mongoose');
+
+// Connect to MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/college')
+.then(() => console.log("Connected to MongoDB"))
+.catch(err => console.log(err));
+
+// Schema
+const StudentSchema = new mongoose.Schema({
+    name: String,
+    age: Number,
+    course: String
+});
+
+// Model
+const Student = mongoose.model('Student', StudentSchema);
+
+// CRUD Operations
+async function performCRUD() {
+    try {
+        // CREATE
+        await Student.insertMany([
+            { name: "Rahul", age: 24, course: "MCA" },
+            { name: "Anu", age: 22, course: "MBA" },
+            { name: "Kiran", age: 23, course: "MSc" }
+        ]);
+        console.log("Student Saved");
+
+        // READ
+        const students = await Student.find();
+        console.log("Students:");
+        console.log(students);
+
+        // UPDATE
+        await Student.updateOne(
+            { name: "Rahul" },
+            { $set: { age: 25 } }
+        );
+        console.log("Student Updated");
+
+        // DELETE
+        await Student.deleteOne({ name: "Rahul" });
+        console.log("Student Deleted");
+
+        mongoose.connection.close();
+
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+performCRUD();
+
+
